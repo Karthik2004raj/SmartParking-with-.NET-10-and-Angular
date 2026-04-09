@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@auth0/angular-jwt": "^5.2.0",
+    "@tailwindcss/typography": "^0.5.19",
+    "chart.js": "^4.5.1",
+    "daisyui": "^5.5.19",
+    "ng2-charts": "^10.0.0"
+  }
+}

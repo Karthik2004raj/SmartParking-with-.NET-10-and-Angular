@@ -1,0 +1,52 @@
+<div class="min-h-screen bg-gray-100">
+  <nav class="bg-white shadow-md p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-xl font-bold">Smart Parking Dashboard</h1>
+      <button (click)="logout()" class="bg-red-500 text-white px-4 py-2 rounded">Logout</button>
+    </div>
+  </nav>
+  
+  <div class="container mx-auto p-4">
+    <div *ngIf="loading" class="text-center p-8">Loading...</div>
+    
+    <div *ngIf="!loading && stats">
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
+        <div class="bg-white p-4 rounded shadow">
+          <h3>Total Slots</h3>
+          <p class="text-2xl font-bold">{{ stats.totalSlots }}</p>
+        </div>
+        <div class="bg-white p-4 rounded shadow">
+          <h3>Occupied</h3>
+          <p class="text-2xl font-bold text-red-600">{{ stats.occupiedSlots }}</p>
+        </div>
+        <div class="bg-white p-4 rounded shadow">
+          <h3>Available</h3>
+          <p class="text-2xl font-bold text-green-600">{{ stats.availableSlots }}</p>
+        </div>
+        <div class="bg-white p-4 rounded shadow">
+          <h3>Utilization</h3>
+          <p class="text-2xl font-bold">{{ stats.utilizationPercentage }}%</p>
+        </div>
+        <div class="bg-white p-4 rounded shadow">
+          <h3>Predicted</h3>
+          <p class="text-2xl font-bold">{{ stats.predictedNextHourOccupancy }}%</p>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div *ngFor="let zone of zones" class="bg-white p-4 rounded shadow">
+          <h3 class="font-bold mb-2">Zone {{ zone.zoneName }}</h3>
+          <p>Total: {{ zone.totalSlots }} | Available: {{ zone.availableSlots }}</p>
+          <div class="grid grid-cols-5 gap-1 mt-2">
+            <div *ngFor="let slot of zone.slots" 
+                 class="w-10 h-10 rounded text-center leading-10 text-white text-sm"
+                 [class.bg-green-500]="slot.status === 'Available'"
+                 [class.bg-red-500]="slot.status === 'Occupied'">
+              {{ slot.slotNumber }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

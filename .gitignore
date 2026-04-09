@@ -50,3 +50,19 @@ coverage/
 # Build artifacts
 **/wwwroot/
 **/published/
+
+# .NET build outputs
+**/bin/
+**/obj/
+**/bin/Debug/
+**/obj/Debug/
+*.db
+*.sqlite
+
+# Angular/Node
+**/node_modules/
+**/dist/
+**/.angular/
+
+# Packages
+*.nupkg
